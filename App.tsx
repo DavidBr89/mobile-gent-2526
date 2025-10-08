@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Test from "./src/components/Test";
+import ParkingsListScreen from "./src/screens/ParkingsListScreen";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <Test />
+      <ParkingsListScreen />
       <StatusBar style="auto" />
     </View>
   );
