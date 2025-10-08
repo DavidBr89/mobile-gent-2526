@@ -1,5 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
+import BlueText from "../components/BlueText";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const URL =
   "https://data.stad.gent/api/explore/v2.1/catalog/datasets/bezetting-parkeergarages-real-time/records";
@@ -26,12 +28,14 @@ const ParkingsListScreen = () => {
     })();
   }, []);
 
+  const { top, bottom, left, right } = useSafeAreaInsets();
+
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={parkings}
         renderItem={({ item }) => {
-          return <Text style={{ height: 200 }}>{item.name}</Text>;
+          return <BlueText style={{ height: 200 }}>{item.name}</BlueText>;
         }}
         keyExtractor={(item) => item.id}
       />
@@ -41,4 +45,8 @@ const ParkingsListScreen = () => {
 
 export default ParkingsListScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 6,
+  },
+});
