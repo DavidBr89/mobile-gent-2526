@@ -5,6 +5,7 @@ import ParkingsListScreen from "./src/screens/ParkingsListScreen";
 import BlueText from "./src/components/BlueText";
 import {
   SafeAreaProvider,
+  SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
@@ -12,15 +13,26 @@ export default function App() {
   const { top, bottom, left, right } = useSafeAreaInsets();
 
   return (
-    // TODO: Padding in styling toegepast
-    <View style={styles.container}>
+    // Padding in styling toegepast
+    <SafeAreaView
+      style={styles.container}
+      edges={{ bottom: "off", top: "additive" }}>
+      {/* <View
+        style={{
+          ...styles.container,
+          paddingBottom: bottom,
+          paddingTop: top,
+          paddingLeft: left,
+          paddingRight: right,
+        }}> */}
       <ParkingsListScreen />
       <View style={styles.secondView}>
         <Text>Second View</Text>
         <BlueText style={{ fontWeight: "800" }}>Subtitle</BlueText>
       </View>
       <StatusBar style="auto" />
-    </View>
+      {/* </View> */}
+    </SafeAreaView>
   );
 }
 
