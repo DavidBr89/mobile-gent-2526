@@ -13,6 +13,15 @@ import { useNavigation } from "@react-navigation/native";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RootStackNavProps } from "../navigators/types";
+import { useFavorites } from "../hooks/useFavorites";
+import { useQuery } from "@tanstack/react-query";
+
+import Axios from "axios";
+
+interface AxiosResponse {
+  total_count: number;
+  results: Parking[];
+}
 
 const URL =
   "https://data.stad.gent/api/explore/v2.1/catalog/datasets/bezetting-parkeergarages-real-time/records";
@@ -32,6 +41,19 @@ const ParkingsListScreen = () => {
     })();
   }, []);
 
+  const { data, error, isLoading, dataUpdatedAt } = useQuery({
+    queryKey: ["fetchParkings"],
+    queryFn: () => {
+      return Axios.get<AxiosResponse>(URL);
+    },
+    initialData: {
+      data: {
+        total_count: 0,
+        results: [],
+      },
+    },
+  });
+
   const { top, bottom, left, right } = useSafeAreaInsets();
 
   // const navigation =
@@ -39,11 +61,15 @@ const ParkingsListScreen = () => {
 
   const navigation = useNavigation();
 
+  const { favorites, addFavorites } = useFavorites();
+
   return (
     <View style={styles.container}>
+      <Text className="text-2xl font-bold text-black">{dataUpdatedAt}</Text>
       <FlatList
-        data={parkings}
+        data={data.data.results}
         renderItem={({ item }) => {
+          const isInFavorites = favorites.some((f) => f.id === item.id);
           return (
             <TouchableOpacity
               style={styles.item}
@@ -54,6 +80,21 @@ const ParkingsListScreen = () => {
                 console.log("Lang geduwd op de knop");
               }}>
               <BlueText>{item.name}</BlueText>
+              <TouchableOpacity
+                onPress={() => {
+                  addFavorites(item);
+                }}
+                className={`${
+                  isInFavorites
+                    ? "bg-white border-2 border-amber-400 rounded-full"
+                    : "bg-amber-400 rounded-full p-4"
+                } `}>
+                <MaterialCommunityIcons
+                  name={`${isInFavorites ? "star" : "star-outline"}`}
+                  size={32}
+                  color={`${isInFavorites ? "#fbbf24" : "white"}`}
+                />
+              </TouchableOpacity>
               <MaterialCommunityIcons
                 name="chevron-right"
                 size={32}

@@ -9,6 +9,7 @@ import RootStackNavigator from "./RootStackNavigator";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import DrawerNavigator from "./DrawerNavigator";
+import FavoritesScreen from "../screens/FavoritesScreen";
 
 const ParkingsTab = createBottomTabNavigator<ParkingsTabParamsList>();
 
@@ -49,6 +50,15 @@ const ParkingsTabNavigator = () => {
                 size={size}
                 name="map-marker"
               />
+            ),
+          }}
+        />
+        <ParkingsTab.Screen
+          name="favorites"
+          component={FavoritesScreen}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons color={color} size={size} name="star" />
             ),
           }}
         />

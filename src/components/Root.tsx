@@ -6,14 +6,19 @@ import App from "../../App";
 import RootStackNavigator from "../navigators/RootStackNavigator";
 import ParkingsTabNavigator from "../navigators/ParkingsTabNavigator";
 import FavoritesProvider from "../contexts/FavoritesContex";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const Root = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <FavoritesProvider>
-          <ParkingsTabNavigator />
-        </FavoritesProvider>
+        <QueryClientProvider client={queryClient}>
+          <FavoritesProvider>
+            <ParkingsTabNavigator />
+          </FavoritesProvider>
+        </QueryClientProvider>
       </NavigationContainer>
     </SafeAreaProvider>
   );

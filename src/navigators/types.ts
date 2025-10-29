@@ -11,6 +11,7 @@ export type RootStackParamsList = {
 export type ParkingsTabParamsList = {
     home: undefined;
     map: undefined;
+    favorites: undefined;
     settings: undefined;
 }
 
