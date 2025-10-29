@@ -5,12 +5,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import App from "../../App";
 import RootStackNavigator from "../navigators/RootStackNavigator";
 import ParkingsTabNavigator from "../navigators/ParkingsTabNavigator";
+import FavoritesProvider from "../contexts/FavoritesContex";
 
 const Root = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <ParkingsTabNavigator />
+        <FavoritesProvider>
+          <ParkingsTabNavigator />
+        </FavoritesProvider>
       </NavigationContainer>
     </SafeAreaProvider>
   );
