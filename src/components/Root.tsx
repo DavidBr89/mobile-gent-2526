@@ -4,12 +4,13 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import App from "../../App";
 import RootStackNavigator from "../navigators/RootStackNavigator";
+import ParkingsTabNavigator from "../navigators/ParkingsTabNavigator";
 
 const Root = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <RootStackNavigator />
+        <ParkingsTabNavigator />
       </NavigationContainer>
     </SafeAreaProvider>
   );

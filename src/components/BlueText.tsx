@@ -14,6 +14,6 @@ export default BlueText;
 const styles = StyleSheet.create({
   blue: {
     color: "blue",
-    height: 100,
+    // height: 100,
   },
 });
