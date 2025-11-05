@@ -8,18 +8,23 @@ import ParkingsTabNavigator from "../navigators/ParkingsTabNavigator";
 import FavoritesProvider from "../contexts/FavoritesContex";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { Provider } from "react-redux";
+import { store } from "../store";
+
 const queryClient = new QueryClient();
 
 const Root = () => {
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <QueryClientProvider client={queryClient}>
-          <FavoritesProvider>
-            <ParkingsTabNavigator />
-          </FavoritesProvider>
-        </QueryClientProvider>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <QueryClientProvider client={queryClient}>
+            <FavoritesProvider>
+              <ParkingsTabNavigator />
+            </FavoritesProvider>
+          </QueryClientProvider>
+        </NavigationContainer>
+      </Provider>
     </SafeAreaProvider>
   );
 };

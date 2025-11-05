@@ -17,6 +17,8 @@ import { useFavorites } from "../hooks/useFavorites";
 import { useQuery } from "@tanstack/react-query";
 
 import Axios from "axios";
+import { add } from "../store/favorites/slice";
+import { useDispatch } from "react-redux";
 
 interface AxiosResponse {
   total_count: number;
@@ -63,6 +65,8 @@ const ParkingsListScreen = () => {
 
   const { favorites, addFavorites } = useFavorites();
 
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <Text className="text-2xl font-bold text-black">{dataUpdatedAt}</Text>
@@ -82,7 +86,11 @@ const ParkingsListScreen = () => {
               <BlueText>{item.name}</BlueText>
               <TouchableOpacity
                 onPress={() => {
-                  addFavorites(item);
+                  // Context
+                  // addFavorites(item);
+
+                  // REDUX
+                  dispatch(add(item));
                 }}
                 className={`${
                   isInFavorites

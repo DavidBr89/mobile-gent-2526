@@ -2,9 +2,12 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import { FavoritesContext } from "../contexts/FavoritesContex";
 import { useFavorites } from "../hooks/useFavorites";
+import { useSelector } from "react-redux";
 
 const FavoritesScreen = () => {
-  const { favorites } = useFavorites();
+  // const { favorites } = useFavorites();
+
+  const favorites = useSelector((store) => store);
 
   return (
     <View>
