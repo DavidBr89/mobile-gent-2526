@@ -19,6 +19,7 @@ import { useQuery } from "@tanstack/react-query";
 import Axios from "axios";
 import { add } from "../store/favorites/slice";
 import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 
 interface AxiosResponse {
   total_count: number;
@@ -63,9 +64,11 @@ const ParkingsListScreen = () => {
 
   const navigation = useNavigation();
 
-  const { favorites, addFavorites } = useFavorites();
+  // const { favorites, addFavorites } = useFavorites();
 
-  const dispatch = useDispatch();
+  const { favorites } = useAppSelector((store) => store);
+
+  const dispatch = useAppDispatch();
 
   return (
     <View style={styles.container}>

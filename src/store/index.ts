@@ -1,9 +1,39 @@
-import {configureStore} from "@reduxjs/toolkit";
+import {configureStore, combineReducers} from "@reduxjs/toolkit";
+import {FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE} from "redux-persist";
 
-import favoritesReducer, { reducer } from "./favorites/slice";
+import favoritesReducer from "./favorites/slice";
+import counterReducer from "./counter/slice"
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const persistConfig = {
+    key: "parkings-state",
+    version: 1,
+    storage: AsyncStorage
+}
+
+const rootReducer = combineReducers({
+    counter: counterReducer,
+    favorites: favoritesReducer
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore(
     {
-        reducer: favoritesReducer
+        reducer: persistedReducer,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            serializableCheck: {
+                ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+            }
+        }) 
     }
 );
+
+
+export const persistor = persistStore(store);
+
+
+
+export type Rootstate = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

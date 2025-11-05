@@ -3,11 +3,12 @@ import React, { useContext } from "react";
 import { FavoritesContext } from "../contexts/FavoritesContex";
 import { useFavorites } from "../hooks/useFavorites";
 import { useSelector } from "react-redux";
+import { useAppSelector } from "../hooks/reduxHooks";
 
 const FavoritesScreen = () => {
   // const { favorites } = useFavorites();
 
-  const favorites = useSelector((store) => store);
+  const favorites = useAppSelector((store) => store.favorites);
 
   return (
     <View>
