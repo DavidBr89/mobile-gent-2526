@@ -6,6 +6,7 @@ export type RootStackParamsList = {
     parkingList: undefined;
     parkingDetail: { data: Parking};
     parkingInfo: undefined;
+    addParking: undefined;
 }
 
 export type ParkingsTabParamsList = {
