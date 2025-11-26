@@ -66,7 +66,7 @@ const ParkingsListScreen = () => {
 
   // const { favorites, addFavorites } = useFavorites();
 
-  const { favorites } = useAppSelector((store) => store);
+  const favorites = useAppSelector((store) => store.favorites);
 
   const dispatch = useAppDispatch();
 

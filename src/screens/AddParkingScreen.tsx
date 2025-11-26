@@ -10,6 +10,7 @@ import {
 import React, { useRef, useState } from "react";
 
 import { useFormik } from "formik";
+import MyTextInput from "../components/MyTextInput";
 
 const AddParkingScreen = () => {
   const [name, setName] = useState("");
@@ -34,8 +35,9 @@ const AddParkingScreen = () => {
       keyboardVerticalOffset={150}>
       <ScrollView
         className="flex-1 p-4 gap-2"
-        keyboardShouldPersistTaps="handled">
-        <TextInput
+        keyboardShouldPersistTaps="handled"
+        contentContainerClassName="gap-4">
+        <MyTextInput
           keyboardAppearance="dark"
           keyboardType="default"
           autoComplete="name-family"
@@ -49,13 +51,12 @@ const AddParkingScreen = () => {
           // onChange={(event) => {event.nativeEvent.text}}
           onChangeText={handleChange("name")}
           onBlur={handleBlur("name")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
           onSubmitEditing={() => {
             emailTxtRef.current?.focus();
           }}
           submitBehavior="submit"
         />
-        <TextInput
+        <MyTextInput
           ref={emailTxtRef}
           keyboardAppearance="dark"
           keyboardType="email-address"
@@ -70,178 +71,6 @@ const AddParkingScreen = () => {
           // onChange={(event) => {event.nativeEvent.text}}
           onChangeText={handleChange("email")}
           onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
-        />
-        <TextInput
-          ref={emailTxtRef}
-          keyboardAppearance="dark"
-          keyboardType="email-address"
-          autoComplete="email"
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="Email"
-          selectionColor="yellow"
-          returnKeyType="next"
-          value={values.email}
-          secureTextEntry
-          // onChange={(event) => {event.nativeEvent.text}}
-          onChangeText={handleChange("email")}
-          onBlur={handleBlur("email")}
-          className="border h-24 border-purple-400 rounded-lg py-2 px-4"
         />
       </ScrollView>
     </KeyboardAvoidingView>
