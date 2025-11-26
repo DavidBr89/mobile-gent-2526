@@ -2,7 +2,7 @@ import { StyleSheet, TextInput, TextInputProps, Text } from "react-native";
 import React, { Ref } from "react";
 
 const MyTextInput = (
-  props: TextInputProps & { ref?: Ref<TextInput>; error: string | undefined }
+  props: TextInputProps & { ref?: Ref<TextInput>; error?: string | undefined }
 ) => {
   return (
     <>

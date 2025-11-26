@@ -1,9 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useRef } from "react";
 import Axios from "axios";
 
 import MapView, { Marker } from "react-native-maps";
 import { useQuery } from "@tanstack/react-query";
+
+import {
+  useBackgroundPermissions,
+  useForegroundPermissions,
+} from "expo-location";
 
 interface AxiosResponse {
   total_count: number;
@@ -27,9 +32,27 @@ const ParkingsMapScreen = () => {
     },
   });
 
+  const [status, requestPermission] = useForegroundPermissions();
+  const [backStatus, requestBackPermission] = useBackgroundPermissions();
+
+  useEffect(() => {
+    if (status?.canAskAgain) {
+      requestPermission();
+    }
+  }, [status?.canAskAgain]);
+
+  useEffect(() => {
+    if (backStatus?.canAskAgain) {
+      requestBackPermission();
+    }
+  }, [backStatus?.canAskAgain]);
+
+  const mapRef = useRef<MapView>(null);
+
   return (
     <View className="flex-1">
       <MapView
+        ref={mapRef}
         style={{ flex: 1 }}
         provider="google"
         mapType="terrain"
@@ -63,6 +86,16 @@ const ParkingsMapScreen = () => {
           />
         ))}
       </MapView>
+      <Button
+        title="Navigeer"
+        onPress={() => {
+          mapRef.current?.animateCamera({
+            center: {
+              latitude: 50.8477,
+              longitude: 4.3572,
+            },
+          });
+        }}></Button>
     </View>
   );
 };
