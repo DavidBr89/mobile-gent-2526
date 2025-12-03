@@ -2,6 +2,11 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import { StackScreenProps } from "@react-navigation/stack";
 
+export type AuthStackParamsList = {
+  login: undefined;
+  register: undefined;
+};
+
 export type RootStackParamsList = {
   parkingList: undefined;
   parkingDetail: { data: Parking };
@@ -22,6 +27,9 @@ export type ParkingsDrawerParamsList = {
   about: undefined;
 };
 
+export type AuthStackNavProps<T extends keyof AuthStackParamsList> =
+  StackScreenProps<AuthStackParamsList, T>;
+
 export type RootStackNavProps<T extends keyof RootStackParamsList> =
   StackScreenProps<RootStackParamsList, T>;
 export type ParkingsTabNavProps<T extends keyof ParkingsTabParamsList> =
@@ -32,7 +40,8 @@ export type ParkingsDrawerNavProps<T extends keyof ParkingsDrawerParamsList> =
 declare global {
   namespace ReactNavigation {
     interface RootParamList
-      extends RootStackParamsList,
+      extends AuthStackParamsList,
+        RootStackParamsList,
         ParkingsTabParamsList,
         ParkingsDrawerParamsList {}
   }
