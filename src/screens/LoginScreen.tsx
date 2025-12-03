@@ -11,6 +11,8 @@ import * as Yup from "yup";
 import MyTextInput from "../components/MyTextInput";
 import { useNavigation } from "@react-navigation/native";
 import { AuthStackNavProps } from "../navigators/types";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebase";
 
 // Validatie schema met Yup
 const loginValidationSchema = Yup.object().shape({
@@ -29,7 +31,13 @@ const LoginScreen = () => {
       password: "",
     },
     validationSchema: loginValidationSchema,
-    onSubmit: async (values) => {},
+    onSubmit: async (values) => {
+      try {
+        await signInWithEmailAndPassword(auth, values.email, values.password);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   });
 
   const navigate = useNavigation<AuthStackNavProps<"login">["navigation"]>();

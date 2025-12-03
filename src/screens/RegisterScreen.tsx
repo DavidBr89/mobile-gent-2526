@@ -11,6 +11,8 @@ import * as Yup from "yup";
 import MyTextInput from "../components/MyTextInput";
 import { useNavigation } from "@react-navigation/native";
 import { AuthStackNavProps } from "../navigators/types";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../config/firebase";
 
 // Validatie schema met Yup
 const registerValidationSchema = Yup.object().shape({
@@ -33,9 +35,16 @@ const RegisterScreen = () => {
       confirmPassword: "",
     },
     validationSchema: registerValidationSchema,
-    onSubmit: (values) => {
-      // Hier kun je de registratie logica implementeren
-      console.log("Registreer met:", values.email, values.password);
+    onSubmit: async (values) => {
+      try {
+        await createUserWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        );
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 

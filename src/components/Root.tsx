@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import App from "../../App";
@@ -11,10 +11,40 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { persistor, store } from "../store";
 import { PersistGate } from "redux-persist/integration/react";
+import AuthStackNavigator from "../navigators/AuthStackNavigator";
+import { onAuthStateChanged, User } from "@firebase/auth";
+import { auth } from "../config/firebase";
+
+import * as SplashScreen from "expo-splash-screen";
 
 const queryClient = new QueryClient();
 
+SplashScreen.preventAutoHideAsync();
+
 const Root = () => {
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
+
+  useEffect(() => {
+    setIsAuthLoading(true);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setLoggedInUser(user);
+      setIsAuthLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    if (!isAuthLoading) {
+      SplashScreen.hideAsync();
+    }
+  }, [isAuthLoading]);
+
+  if (isAuthLoading) {
+    return null;
+  }
+
   return (
     <SafeAreaProvider>
       <Provider store={store}>
@@ -22,7 +52,13 @@ const Root = () => {
           <NavigationContainer>
             <QueryClientProvider client={queryClient}>
               <FavoritesProvider>
-                <ParkingsTabNavigator />
+                {loggedInUser !== null ? (
+                  <ParkingsTabNavigator />
+                ) : (
+                  <AuthStackNavigator />
+                )}
+                {/* <AuthStackNavigator /> */}
+                {/* <ParkingsTabNavigator /> */}
               </FavoritesProvider>
             </QueryClientProvider>
           </NavigationContainer>

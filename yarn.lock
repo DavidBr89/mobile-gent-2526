@@ -1193,6 +1193,22 @@
     semver "^7.6.0"
     xml2js "0.6.0"
 
+"@expo/prebuild-config@^54.0.6":
+  version "54.0.6"
+  resolved "https://registry.yarnpkg.com/@expo/prebuild-config/-/prebuild-config-54.0.6.tgz#0f0daed0195efbb33d91a730052b208507f94eed"
+  integrity sha512-xowuMmyPNy+WTNq+YX0m0EFO/Knc68swjThk4dKivgZa8zI1UjvFXOBIOp8RX4ljCXLzwxQJM5oBBTvyn+59ZA==
+  dependencies:
+    "@expo/config" "~12.0.10"
+    "@expo/config-plugins" "~54.0.2"
+    "@expo/config-types" "^54.0.8"
+    "@expo/image-utils" "^0.8.7"
+    "@expo/json-file" "^10.0.7"
+    "@react-native/normalize-colors" "0.81.5"
+    debug "^4.3.1"
+    resolve-from "^5.0.0"
+    semver "^7.6.0"
+    xml2js "0.6.0"
+
 "@expo/schema-utils@^0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@expo/schema-utils/-/schema-utils-0.1.7.tgz#38baa0effa0823cd4eca3f05e5eee3bde311da12"
@@ -2017,6 +2033,11 @@
   version "0.81.4"
   resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.81.4.tgz#a0384d5aaac825aeefa5e391947189f6cee4a641"
   integrity sha512-9nRRHO1H+tcFqjb9gAM105Urtgcanbta2tuqCVY0NATHeFPDEAB7gPyiLxCHKMi1NbhP6TH0kxgSWXKZl1cyRg==
+
+"@react-native/normalize-colors@0.81.5":
+  version "0.81.5"
+  resolved "https://registry.yarnpkg.com/@react-native/normalize-colors/-/normalize-colors-0.81.5.tgz#1ca6cb6772bb7324df2b11aab35227eacd6bdfe7"
+  integrity sha512-0HuJ8YtqlTVRXGZuGeBejLE04wSQsibpTI+RGOyVqxZvgtlLLC/Ssw0UmbHhT4lYMp2fhdtvKZSs5emWB1zR/g==
 
 "@react-native/virtualized-lists@0.81.4":
   version "0.81.4"
@@ -3298,6 +3319,13 @@ expo-server@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/expo-server/-/expo-server-1.0.1.tgz#9e04605310be090896a85aadce2cb7eaf6aae9b7"
   integrity sha512-J3JlpzNXOkkr4BbapTrcv6klBQcw6NzrBBVIU7qkNE2eU3U1on9rp27wi0+cihjG/QgxSIqQVkrga5z3HWnH0A==
+
+expo-splash-screen@^31.0.11:
+  version "31.0.11"
+  resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-31.0.11.tgz#706e035d0d00dcfa882c5c1cf874db1ae5f5feb1"
+  integrity sha512-D7MQflYn/PAN3+fACSyxHO4oxZMBezllbgFdVY8roAS1gXpCy8SS6LrGHTD0VpOPEp3X4Gn7evTnXSI9nFoI5Q==
+  dependencies:
+    "@expo/prebuild-config" "^54.0.6"
 
 expo-status-bar@~3.0.8:
   version "3.0.8"
