@@ -1,10 +1,20 @@
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import {
+  addDoc,
   collection,
+  doc,
   onSnapshot,
   orderBy,
   query,
+  serverTimestamp,
+  setDoc,
   Unsubscribe,
   where,
 } from "firebase/firestore";
@@ -54,6 +64,38 @@ const ProductsScreen = () => {
     );
   }
 
+  const handlePress = async () => {
+    const newProduct: Omit<Product, "id"> = {
+      name: "Web 2 - Video's",
+      price: 250,
+      isEnabled: true,
+      // createdAt: serverTimestamp(),
+    };
+
+    const updateProduct: Partial<Product> = {
+      name: "Web 2 lessen",
+      // updatedAt: serverTimestamp(),
+    };
+
+    const docRef = doc(db, "products/web2videos");
+    const collectionRef = collection(db, "products");
+
+    try {
+      // Document toevoegen met eigen unieke ID
+      // await setDoc(docRef, newProduct);
+      // Update met overschrijven van alle fields
+      // await setDoc(docRef, updateProduct);
+      // Update met het mergen van bestaande fields
+      await setDoc(docRef, updateProduct, {
+        merge: true,
+      });
+
+      await addDoc(collectionRef, newProduct);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View className="flex-1">
       <FlatList
@@ -68,6 +110,12 @@ const ProductsScreen = () => {
         }}
         keyExtractor={(item) => item.id}
       />
+
+      <TouchableOpacity
+        onPress={handlePress}
+        className="px-4 py-2 bg-indigo-500">
+        <Text>Nieuw product</Text>
+      </TouchableOpacity>
     </View>
   );
 };

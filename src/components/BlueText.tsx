@@ -14,6 +14,8 @@ export default BlueText;
 const styles = StyleSheet.create({
   blue: {
     color: "blue",
+    fontFamily: "Bitcount",
+    fontSize: 28,
     // height: 100,
   },
 });

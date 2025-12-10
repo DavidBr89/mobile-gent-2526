@@ -14,6 +14,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import AuthStackNavigator from "../navigators/AuthStackNavigator";
 import { onAuthStateChanged, User } from "@firebase/auth";
 import { auth } from "../config/firebase";
+import { useFonts } from "expo-font";
 
 import * as SplashScreen from "expo-splash-screen";
 
@@ -24,6 +25,10 @@ SplashScreen.preventAutoHideAsync();
 const Root = () => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+
+  const [fontLoaded] = useFonts({
+    Bitcount: require("../../assets/fonts/Bitcount.ttf"),
+  });
 
   useEffect(() => {
     setIsAuthLoading(true);
@@ -36,12 +41,12 @@ const Root = () => {
   }, []);
 
   useEffect(() => {
-    if (!isAuthLoading) {
+    if (!isAuthLoading && fontLoaded) {
       SplashScreen.hideAsync();
     }
-  }, [isAuthLoading]);
+  }, [isAuthLoading, fontLoaded]);
 
-  if (isAuthLoading) {
+  if (isAuthLoading && !fontLoaded) {
     return null;
   }
 

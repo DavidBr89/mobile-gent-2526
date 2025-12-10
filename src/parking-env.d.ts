@@ -1,3 +1,5 @@
+// import { Timestamp } from "firebase/firestore";
+
 interface Parking {
   id: string;
   name: string;
@@ -14,4 +16,7 @@ interface Product {
   id: string;
   name: string;
   price: number;
+  isEnabled: boolean;
+  // createdAt: Timestamp
 }
+
