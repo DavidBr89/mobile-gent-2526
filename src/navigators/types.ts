@@ -25,6 +25,7 @@ export type ParkingsDrawerParamsList = {
   profile: undefined;
   camera: undefined;
   about: undefined;
+  products: undefined;
 };
 
 export type AuthStackNavProps<T extends keyof AuthStackParamsList> =

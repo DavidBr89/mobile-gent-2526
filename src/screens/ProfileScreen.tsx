@@ -10,12 +10,6 @@ import { signOut } from "@firebase/auth";
 import { auth, db } from "../config/firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-}
-
 const ProfileScreen = () => {
   const [products, setProducts] = useState<Product[]>([]);
 

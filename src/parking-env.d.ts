@@ -9,3 +9,9 @@ interface Parking {
   };
   urllinkaddress: string;
 }
+
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+}
